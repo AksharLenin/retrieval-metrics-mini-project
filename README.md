@@ -63,6 +63,24 @@ Add a short interpretation (4 to 6 sentences) to this README or a `RESULT.md`:
 - Which queries did semantic search win, and what do those have in common?
 - One sentence on why a team would still keep the weaker system around (hint: the two systems win on different queries).
 
+### Results
+
+| Query | Keyword rank | Semantic rank |
+|---|---|---|
+| my redis cache keeps showing old data | 8 | 1 |
+| how do I add semantic search to a table I already have | miss | 2 |
+| redis or memcached for caching | 1 | 2 |
+| why did my query get slower after I added an index | miss | 1 |
+| what does ACID actually guarantee | 2 | 1 |
+| how do I keep my postgres online while changing the schema | 6 | 3 |
+| my background jobs stop after every deploy | miss | 2 |
+| how do I let my database accept more writes per second | 4 | 1 |
+| sql or nosql for a new product | 1 | 3 |
+| why does my redis memory keep climbing | miss | 2 |
+| **Summary** | **MRR 0.30 · Recall@10 0.60** | **MRR 0.67 · Recall@10 1.00** |
+
+Semantic search is better overall, with an MRR of 0.67 and Recall@10 of 1.00 compared with keyword search's 0.30 and 0.60. Keyword search wins on “redis or memcached for caching” and “sql or nosql for a new product,” where the queries use specific product or technology names that also appear directly in the relevant content. Semantic search wins on the other eight queries, which tend to describe a problem, desired outcome, or concept in conversational language rather than using an exact matching phrase. These results suggest semantic search is more reliable for this test set, although keyword search ranks the exact-match results higher in its two wins. A team might keep keyword search as a complementary option because it can excel when users know the precise terms they want.
+
 ## Take it further (optional)
 
 If you have a working Postgres with the posts loaded and embeddings generated, swap `search-results.json` for real searches:
